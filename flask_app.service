@@ -1,0 +1,17 @@
+[Unit]
+Description=My Flask App
+After=network.target
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+User=www-data
+Group=www-data
+Type=simple
+ExecStart=/home/www-data/{project_name}/venv/bin/gunicorn --bind unix:socket -m 660 'app:create_app()'
+WorkingDirectory=/home/www-data/{project_name}
+EnvironmentFile=/home/www-data/{project_name}/.env
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

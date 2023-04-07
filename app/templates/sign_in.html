@@ -1,0 +1,43 @@
+<html lang="en" data-bs-theme="light">
+<head>
+    <script src="{{ url_for('static', filename='js/color-modes.js') }}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.111.3">
+    <title>Sign In</title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link href="{{ url_for('static', filename='css/sign_in.css') }}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<main class="form-signin w-100 m-auto">
+    <form action="{{ url_for('sign_in') }}" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash my-1"><small>{{ message }}</small></div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+</main>
+</body>
+</html>
